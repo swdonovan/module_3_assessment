@@ -1,7 +1,8 @@
 <h1>Best Buy Stores</h1>
-<p><%= @stores.data.store_count %> Total Stores</p>
+<p><%= @stores.all['total'] %> Total Stores</p>
 <ul>
-  <% @stores.all.each do |store| %>
-  <li><%= binding.pry %></li>
+  <% @stores.all['stores'].each do |store| %>
+  <li><%= store['longName'] %></li>
+  <p><%= store['city'] %></p>
   <% end %>
 </ul>
