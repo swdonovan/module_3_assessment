@@ -58,18 +58,30 @@ describe "User visits items API" do
     item_two   = Item.create(name: "scissor", description: "sharp", image_url: "http://upload.wikimedia.org/wikipedia/commons/0/06/Item_Industrietechnik_und_Maschinenbau_logo.svg" )
     item_three = Item.create(name: "hammer", description: "hard", image_url: "http://upload.wikimedia.org/wikipedia/commons/0/06/Item_Industrietechnik_und_Maschinenbau_logo.svg" )
     # When I send a DELETE request to `/api/v1/items/1`
-    # I receive a 204 JSON response
-    # if the record is successfully deleted
     expect{delete "/api/v1/items/#{item_two.id}"}.to change(Item, :count).by(-1)
-
+    # I receive a 204 JSON response
     expect(response).to be_success
+    # if the record is successfully deleted
     expect{Item.find(item_one.id)}.to_not raise_error(ActiveRecord::RecordNotFound)
     expect{Item.find(item_two.id)}.to raise_error(ActiveRecord::RecordNotFound)
+
     count = Item.count
 
     delete "/api/v1/items/#{item_one.id}"
     expect(response).to be_success
 
     expect(Item.count).to eq (count - 1)
+  end
+
+  it "can create a new item to our DB" do
+    item_params = {name: "rock", description: "lumpy", image_url: "http://upload.wikimedia.org/wikipedia/commons/0/06/Item_Industrietechnik_und_Maschinenbau_logo.svg" }
+
+    post "/api/v1/items", params: {item: item_params}
+    item = Item.last
+
+    expect(response).to be_success
+    expect(item.name).to eq(item_params[:name])
+    expect(item.description).to eq(item_params[:description])
+    expect(item.image_url).to eq(item_params[:image_url])
   end
 end

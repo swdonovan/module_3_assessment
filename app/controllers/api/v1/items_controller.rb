@@ -9,6 +9,15 @@ class Api::V1::ItemsController < API::ApiController
     render json: item
   end
 
+  def create
+    item = Item.new(safe_params)
+    if item.save
+      render json: item
+    else
+      render :file => 'public/404.html'
+    end
+  end
+
   def destroy
     id = params[:id]
     item_destroy(id)
