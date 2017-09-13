@@ -18,6 +18,8 @@ gem "faker"
 gem "therubyracer"
 gem "less-rails-bootstrap"
 gem 'shoulda-matchers'
+gem 'active_model_serializers', '~> 0.10.0'
+
 
 group :development do
   gem 'listen', '~> 3.0.5'
