@@ -1,10 +1,17 @@
 class Api::V1::ItemsController < API::ApiController
   def index
-    render json: all_items
+    items = all_items
+    render json: items
   end
 
   def show
-    render json: single_item(params[:id])
+    item = single_item(params[:id])
+    render json: item
+  end
+
+  def destroy
+    id = params[:id]
+    item_destroy(id)
   end
 
   private
@@ -14,5 +21,13 @@ class Api::V1::ItemsController < API::ApiController
 
     def single_item(id)
       Item.find_by(id: id)
+    end
+
+    def safe_params
+      params.require(:item).permit(:name, :description, :image_url)
+    end
+
+    def item_destroy(item_id)
+      Item.find(item_id).destroy
     end
 end
