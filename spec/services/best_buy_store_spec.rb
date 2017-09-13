@@ -1,23 +1,22 @@
 describe BestBuyStore do
   before(:each) do
-  zipcode = 80202
+    zipcode = 80202
 
-  @store = BestBuyStore.new(zipcode)
+    @store = BestBuyStore.new(zipcode)
   end
 
-  describe "#zipcode" do
-    it "finds correct zipcode"
-    expect(@store.zipcode).to eq 80202
-  end
+  describe "#methods" do
+    it "finds correct zipcode" do
+      expect(@store).to be_instance_of BestBuyStore
+      expect(@store.zipcode).to eq 80202
+    end
 
-  describe "#data" do
-    it "initializes to bestbuy data poro"
-    expect(@store.data).to be_instance_of BestBuyData
-  end
+    it "#data -- initializes to bestbuy data poro" do
+      expect(@store.data).to be_instance_of BestBuyData
+    end
 
-  describe "#all" do
-    it "returns array of objects"
-    expect(@store.all).to be_instance_of BestBuyData
-    expect(@store.all.count).to eq 17
+    it "#all -- returns array of objects" do
+      expect(@store.all.count).to eq 11
+    end
   end
 end
