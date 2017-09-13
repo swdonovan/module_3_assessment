@@ -12,7 +12,7 @@ class BestBuyData
   end
 
   def stores
-    store_data = get_request("#{url}/stores(area(#{zipcode},25))?format=json&show=city,longName&apiKey=#{key}")
+    store_data = get_request("#{url}/stores(area(#{zipcode},25))?format=json&show=city,longName,distance,phone,storeType&apiKey=#{key}")
     stores     = parse_response(store_data)
   end
 
