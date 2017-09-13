@@ -1,5 +1,11 @@
 class SearchController < ApplicationController
   def index
-    @stores = BestBuyStore.new(params[:zip_code])
+    zip = params[:zip_code].to_i
+    @stores = best_buy_store(zip)
   end
+
+  private
+    def best_buy_store(zipcode)
+      BestBuyStore.new(zipcode)
+    end
 end
