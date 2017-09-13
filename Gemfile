@@ -17,6 +17,7 @@ gem "jbuilder"
 gem "faker"
 gem "therubyracer"
 gem "less-rails-bootstrap"
+gem 'shoulda-matchers'
 
 group :development do
   gem 'listen', '~> 3.0.5'
