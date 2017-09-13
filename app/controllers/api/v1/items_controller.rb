@@ -9,10 +9,10 @@ class Api::V1::ItemsController < API::ApiController
 
   private
     def all_items
-      @items = Item.all
+      Item.all
     end
 
     def single_item(id)
-      @item = Item.find(id).to_a
+      Item.find_by(id: id)
     end
 end
