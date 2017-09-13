@@ -16,11 +16,17 @@ class BestBuyData
     stores     = parse_response(store_data)
   end
 
+  def store_count
+    store_data = get_request("#{url}/stores(area(#{zipcode},25))?format=json&show=city,longName&apiKey=#{key}")
+    stores     = parse_response(store_data)
+    stores.count
+  end
+
 
   private
     def get_request(site)
-      data = URI(site)
-      @request = Net::HTTP.get(site)
+      uri = URI(site)
+      @request = Net::HTTP.get(uri)
     end
 
     def parse_response(data)

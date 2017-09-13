@@ -1,0 +1,7 @@
+<h1>Best Buy Stores</h1>
+<p><%= @stores.data.store_count %> Total Stores</p>
+<ul>
+  <% @stores.all.each do |store| %>
+  <li><%= binding.pry %></li>
+  <% end %>
+</ul>
