@@ -9,6 +9,23 @@ require 'rspec/rails'
 require 'capybara/rails'
 # Require shoulda-matchers and config it with Rails and RSpec
 require 'shoulda-matchers'
+require 'webmock/rspec'
+require 'vcr'
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/cassettes"
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+  config.ignore_request do |request|
+    ## Ignore requests made to port 666
+    # URI(request.uri).port == 666
+
+    ## Ignore requests using a specific HTTP method
+    # The following methods are available:
+    # :head, :options, :get, :post, :put, :patch, :delete
+    request.method == :get
+  end
+end
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

@@ -73,6 +73,17 @@ RSpec.feature "User can search for" do
     expect(page).to_not have_css ".store-10-phone"
     expect(page).to_not have_css ".store-10-type"
 
+    expect(page).to_not have_css ".store-11-city"
+    expect(page).to_not have_css ".store-11-distance"
+    expect(page).to_not have_css ".store-11-phone"
+    expect(page).to_not have_css ".store-11-type"
+
+    expect(page).to have_content "Cherry Creek Shopping Center"
+    expect(page).to have_content "Southglenn"
+
+    expect(page).to have_content "3.45"
+    expect(page).to have_content "11.02"
+
     # And I should see the long name, city, distance, phone number and store type for each of the 10 results
   end
 end
