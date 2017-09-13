@@ -83,5 +83,18 @@ describe "User visits items API" do
     expect(item.name).to eq(item_params[:name])
     expect(item.description).to eq(item_params[:description])
     expect(item.image_url).to eq(item_params[:image_url])
+
+    get "/api/v1/items/#{Item.last.id}"
+
+    item_two = Item.last
+    item = JSON.parse(response.body, symbolize_names: true)
+
+    expect(item.count).to eq(4)
+    expect(item[:id]).to eq item_two.id
+    expect(item[:name]).to eq item_two.name
+    expect(item[:description]).to eq item_two.description
+    expect(item[:image_url]).to eq item_two.image_url
+    expect(item[:created_at]).to eq nil
+    expect(item[:updated_at]).to eq nil
   end
 end
