@@ -6,6 +6,6 @@ class SearchController < ApplicationController
 
   private
     def best_buy_store(zipcode)
-      BestBuyStore.new(zipcode)
+      BestBuyStore.stores(zipcode)
     end
 end

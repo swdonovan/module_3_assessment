@@ -1,11 +1,11 @@
 <h1>Best Buy Stores</h1>
-<p><%= @stores.all['total'] %> Total Stores</p>
+<p><%= @stores.firste.total %> Total Stores</p>
 <ul>
-  <% @stores.all['stores'].each_with_index do |store, index| %>
-    <li class="store-<%= index %>-name"><%= store['longName'] %></li>
-    <p class="store-<%= index %>-city"><%= store['city'] %></p>
-    <p class="store-<%= index %>-distance"><%= store['distance'] %></p>
-    <p class="store-<%= index %>-phone">><%= store['phone'] %></p>
-    <p class="store-<%= index %>-type">><%= store['storeType'] %></p>
+  <% @stores.each_with_index do |store, index| %>
+    <li class="store-<%= index %>-name"><%= store.longname %></li>
+    <p class="store-<%= index %>-city"><%= store.city %></p>
+    <p class="store-<%= index %>-distance"><%= store.distance %></p>
+    <p class="store-<%= index %>-phone">><%= store.phone %></p>
+    <p class="store-<%= index %>-type">><%= store.store_type %></p>
   <% end %>
 </ul>
