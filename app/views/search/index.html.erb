@@ -1,5 +1,5 @@
 <h1>Best Buy Stores</h1>
-<p><%= @stores.firste.total %> Total Stores</p>
+<p><%= @stores.first.total %> Total Stores</p>
 <ul>
   <% @stores.each_with_index do |store, index| %>
     <li class="store-<%= index %>-name"><%= store.longname %></li>
